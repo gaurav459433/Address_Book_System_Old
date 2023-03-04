@@ -11,6 +11,7 @@ public class AddressBook {
 
     public void addContact() {
         ContactPerson contact = new ContactPerson();
+
         System.out.println("Enter your FirstName: ");
         contact.setFirstName(sc.next());
         System.out.println("Enter your LastName: ");
@@ -69,6 +70,24 @@ public class AddressBook {
         }
         if (IsAvaible == false) {
             System.out.println("Contact Doesn't exist.");
+        }
+    }
+
+    public void deleteContact() {
+        System.out.println("Enter the First Name to Delete: ");
+        String FirstName = (sc.next());
+        boolean IsAvaible = false;
+
+        for (ContactPerson contact : contactsArrayList) {
+            if (contact.getFirstName().equalsIgnoreCase(FirstName)) {
+                IsAvaible = true;
+                contactsArrayList.remove(contact);
+                System.out.println("!!Deleted!!");
+                break;
+            }
+        }
+        if (IsAvaible == false) {
+            System.out.println("Doesn't exist.");
         }
     }
 }
