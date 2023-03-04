@@ -6,31 +6,38 @@ public class AddressBookMain {
     public static void main(String[] args) {
         System.out.println("Welcome To Address Book Program: ");
         AddressBook addressBook = new AddressBook();
-        int option;
         Scanner sc = new Scanner(System.in);
+        int flag = 1;
 
-        do {
-            System.out.println("1. ADD CONTACT \n2. DISPLAY CONTACT \n3. EDIT CONTACT \n4. DELETE CONTACT ");
-            System.out.println("Enter the Operation Number");
-            option = sc.nextInt();
-
-            switch (option) {
+        while (flag == 1) {
+            System.out.println("Select a choice : \n1. Add \n2. Edit  \n3. Delete \n4. Exit");
+            int choice = sc.nextInt();
+            switch (choice) {
                 case 1:
                     addressBook.addContact();
                     break;
                 case 2:
-                    addressBook.showContacts();
-                    break;
-                case 3:
+                    if (addressBook.contactsArrayList.isEmpty()) {
+                        System.out.println(" Address book is empty ");
+                        break;
+                    }
                     addressBook.editContact();
                     break;
-                case 4:
+                case 3:
+                    if (addressBook.contactsArrayList.isEmpty()) {
+                        System.out.println(" Address book is empty ");
+                        break;
+                    }
                     addressBook.deleteContact();
+                case 4:
+                    flag = 0;
                     break;
+
                 default:
-                    System.out.println("Wrong Operation Number");
+                    System.out.println(" Enter a valid choice");
                     break;
             }
-        } while (option < 5);
+        }
+        System.out.println(addressBook.contactsArrayList);
     }
 }
